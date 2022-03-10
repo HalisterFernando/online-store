@@ -1,7 +1,7 @@
 import React from 'react';
 
 class App extends React.Component {
-  render (){
+  render() {
     return (
       <div>
         <p>Projeto FrontEnd Online Store</p>
