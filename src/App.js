@@ -1,10 +1,16 @@
 import React from 'react';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import Home from './pages/Home';
 
 class App extends React.Component {
   render() {
     return (
       <div>
-        <p>Projeto FrontEnd Online Store</p>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/" component={ Home } />
+          </Switch>
+        </BrowserRouter>
       </div>
     );
   }
