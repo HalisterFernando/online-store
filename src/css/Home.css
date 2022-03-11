@@ -1,5 +1,126 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+.box-shopping {
+  display: flex;
+  width: 1100px;
+}
+
+.box-search {
+  background: gainsboro;
+  display: flex;
+  flex-direction: column;
+  width: 900px;
+}
+
+.box-input-search {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  width: 900px;
+}
+
+.box-input-search input {
+  border: solid 1px gray;
+  border-radius: 50px;
+  margin-right: 10px;
+  padding: 8px;
+  width: 600px;
+}
+
+.box-input-search button {
+  background-color: rgb(46, 134, 193);
+  border: solid 1px gray;
+  border-radius: 50px;
+  color: white;
+  cursor: pointer;
+  margin-right: 20px;
+  padding: 8px;
+  width: 80px;
+}
+
+.box-input-search button:hover {
+  background-color: rgb(27, 79, 114);
+  font-weight: 900;
+}
+
+.box-input-search button:active {
+  filter: brightness(0.5);
+}
+
+.box-message {
+  padding: 5px;
+  text-align: center;
+}
+
+.box-message p {
+  font-weight: 600;
+}
+
+.shop-cart {
+  align-content: center;
+  background-color: rgb(46, 134, 193);
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  width: 75px;
+}
+
+.shop-cart:hover {
+  background-color: rgb(27, 79, 114);
+}
+
+.shop-cart img {
+  width: 30px;
+}
+
+.box-menu {
+  background-color: rgb(46, 134, 193);
+  padding: 5px 0;
+  width: 200px;
+}
+
+.box-cards {
+  background: gainsboro;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+li {
+  list-style: none;
+}
+
+.bt-category {
+  background-color: rgb(46, 134, 193);
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 7px 10px;
+  text-align: left;
+  width: 200px;
+}
+
+.bt-category:hover {
+  background-color: rgb(27, 79, 114);
+  font-weight: 900;
+}
+
+.bt-category:active {
+  filter: brightness(0.5);
+}
+
+.box-card {
+  align-items: center;
+  background: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  justify-content: space-between;
+  margin: 5px;
+  padding: 5px;
+  width: 210px;
+}
+
+.box-card img {
+  width: 130px;
 }

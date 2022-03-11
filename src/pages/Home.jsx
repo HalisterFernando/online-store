@@ -4,6 +4,7 @@ import Menu from '../components/Menu';
 import ProductCard from '../components/ProductCard';
 import ShoppingCartButton from '../components/ShoppingCartButton';
 import { getCategories } from '../services/api';
+import '../css/Home.css';
 
 class Home extends React.Component {
   constructor() {
@@ -60,47 +61,56 @@ class Home extends React.Component {
   render() {
     const { search, categories, load, cards } = this.state;
     return (
-      <div>
-        <div className="box-search">
-          <p
-            data-testid="home-initial-message"
-          >
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </p>
-          <input
-            data-testid="query-input"
-            type="text"
-            name="search"
-            value={ search }
-            onChange={ this.handleChange }
-          />
-          <button
-            type="button"
-            data-testid="query-button"
-            onClick={ this.handleClick }
-          >
-            Pesquisar
-          </button>
+      <div className="box-shopping">
+        <div className="box-menu">
+          { load ? <Loading />
+            : (
+              <ul>
+                <Menu
+                  categories={ categories }
+                  callback={ this.searchCategorie }
+                />
+              </ul>
+            )}
         </div>
-        <ShoppingCartButton />
-        { load ? <Loading />
-          : (
-            <ul>
-              <Menu
-                categories={ categories }
-                callback={ this.searchCategorie }
+        <div className="box-shop-search">
+          <div className="box-search">
+            <div className="box-message">
+              <p
+                data-testid="home-initial-message"
+              >
+                Digite algum termo de pesquisa ou escolha uma categoria.
+              </p>
+            </div>
+            <div className="box-input-search">
+              <input
+                data-testid="query-input"
+                type="text"
+                name="search"
+                value={ search }
+                onChange={ this.handleChange }
               />
-            </ul>
-          )}
-
-        {cards.length > 0 && (cards.map((card) => (
-          <ProductCard
-            key={ card.id }
-            productName={ card.title }
-            productImage={ card.thumbnail }
-            productPrice={ card.price }
-          />
-        )))}
+              <button
+                type="button"
+                data-testid="query-button"
+                onClick={ this.handleClick }
+              >
+                Pesquisar
+              </button>
+              <ShoppingCartButton />
+            </div>
+          </div>
+          <div className="box-cards">
+            {cards.length > 0 && (cards.map((card) => (
+              <ProductCard
+                key={ card.id }
+                productName={ card.title }
+                productImage={ card.thumbnail }
+                productPrice={ card.price }
+              />
+            )))}
+          </div>
+        </div>
       </div>
     );
   }
