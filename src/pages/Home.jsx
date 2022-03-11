@@ -48,32 +48,50 @@ class Home extends React.Component {
     });
   }
 
+  searchCategorie = async ({ target }) => {
+    const { value } = target;
+    const url = `https://api.mercadolibre.com/sites/MLB/search?category=${value}`;
+    const response = await fetch(url);
+    const json = await response.json();
+    const categorieArray = json.results;
+    this.setState({ cards: categorieArray });
+  }
+
   render() {
     const { search, categories, load, cards } = this.state;
     return (
       <div>
-        <p
-          data-testid="home-initial-message"
-        >
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </p>
-        <input
-          data-testid="query-input"
-          type="text"
-          name="search"
-          value={ search }
-          onChange={ this.handleChange }
-        />
-        <button
-          type="button"
-          data-testid="query-button"
-          onClick={ this.handleClick }
-        >
-          Pesquisar
-        </button>
+        <div className="box-search">
+          <p
+            data-testid="home-initial-message"
+          >
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </p>
+          <input
+            data-testid="query-input"
+            type="text"
+            name="search"
+            value={ search }
+            onChange={ this.handleChange }
+          />
+          <button
+            type="button"
+            data-testid="query-button"
+            onClick={ this.handleClick }
+          >
+            Pesquisar
+          </button>
+        </div>
         <ShoppingCartButton />
         { load ? <Loading />
-          : <ul><Menu categories={ categories } /></ul> }
+          : (
+            <ul>
+              <Menu
+                categories={ categories }
+                callback={ this.searchCategorie }
+              />
+            </ul>
+          )}
 
         {cards.length > 0 && (cards.map((card) => (
           <ProductCard
