@@ -1,6 +1,6 @@
 import React from 'react';
-import Loading from '../component/Loading';
-import Menu from '../component/Menu';
+import Loading from '../components/Loading';
+import Menu from '../components/Menu';
 import ProductCard from '../components/ProductCard';
 import ShoppingCartButton from '../components/ShoppingCartButton';
 import { getCategories } from '../services/api';
