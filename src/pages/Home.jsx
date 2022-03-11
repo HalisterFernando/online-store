@@ -99,6 +99,7 @@ class Home extends React.Component {
             productName={ card.title }
             productImage={ card.thumbnail }
             productPrice={ card.price }
+            productId={ card.id }
           />
         )))}
       </div>
