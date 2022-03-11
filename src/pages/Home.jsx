@@ -1,4 +1,5 @@
 import React from 'react';
+import ShoppingCartButton from '../components/ShoppingCartButton';
 
 class Home extends React.Component {
   constructor() {
@@ -28,6 +29,7 @@ class Home extends React.Component {
         >
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
+        <ShoppingCartButton />
       </div>
     );
   }
