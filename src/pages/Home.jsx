@@ -2,6 +2,7 @@ import React from 'react';
 import Menu from '../component/Menu';
 import Loading from '../component/Loading';
 import { getCategories } from '../services/api';
+import ShoppingCartButton from '../components/ShoppingCartButton';
 
 class Home extends React.Component {
   constructor() {
@@ -52,6 +53,7 @@ class Home extends React.Component {
         >
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
+        <ShoppingCartButton />
       </div>
     );
   }
