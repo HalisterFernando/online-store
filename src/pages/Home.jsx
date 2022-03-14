@@ -99,16 +99,17 @@ class Home extends React.Component {
               </button>
               <ShoppingCartButton />
             </div>
-          </div>
-          <div className="box-cards">
-            {cards.length > 0 && (cards.map((card) => (
-              <ProductCard
-                key={ card.id }
-                productName={ card.title }
-                productImage={ card.thumbnail }
-                productPrice={ card.price }
-              />
-            )))}
+            <div className="box-cards">
+              {cards.length > 0 && (cards.map((card) => (
+                <ProductCard
+                  key={ card.id }
+                  productName={ card.title }
+                  productImage={ card.thumbnail }
+                  productPrice={ card.price }
+                  productId={ card.id }
+                />
+              )))}
+            </div>
           </div>
         </div>
       </div>
