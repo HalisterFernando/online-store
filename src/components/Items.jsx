@@ -12,7 +12,7 @@ class Items extends React.Component {
           <img src={ productImage } alt={ productName } />
         </div>
         <p>{`R$ ${productPrice.toFixed(2)}`}</p>
-        <span data-testid="shopping-cart-product-quantity">Quantidade</span>
+        <span data-testid="shopping-cart-product-quantity">1</span>
       </div>
     );
   }

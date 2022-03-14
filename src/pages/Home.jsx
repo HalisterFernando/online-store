@@ -1,3 +1,4 @@
+import { PropTypes } from 'prop-types';
 import React from 'react';
 import Loading from '../components/Loading';
 import Menu from '../components/Menu';
@@ -14,25 +15,11 @@ class Home extends React.Component {
       load: false,
       categories: [],
       cards: [],
-      items: [],
     };
   }
 
   componentDidMount() {
     this.returnGetCategories();
-  }
-
-  addItem = async (e) => {
-    const { value } = e.target;
-    const response = await fetch(` https://api.mercadolibre.com/items/${value}`);
-    const searchId = await response.json();
-
-    this.setState((prevState) => ({
-      items: [...prevState.items, searchId],
-    }), () => {
-      const { items } = this.state;
-      localStorage.setItem('product', JSON.stringify(items));
-    });
   }
 
   handleChange = ({ target }) => {
@@ -74,6 +61,7 @@ class Home extends React.Component {
 
   render() {
     const { search, categories, load, cards } = this.state;
+    const { addItem } = this.props;
 
     return (
       <div className="box-shopping">
@@ -122,7 +110,7 @@ class Home extends React.Component {
                   productImage={ card.thumbnail }
                   productPrice={ card.price }
                   productId={ card.id }
-                  addItem={ (e) => this.addItem(e) }
+                  addItem={ addItem }
                 />
               )))}
             </div>
@@ -132,5 +120,9 @@ class Home extends React.Component {
     );
   }
 }
+
+Home.propTypes = {
+  addItem: PropTypes.func.isRequired,
+};
 
 export default Home;
