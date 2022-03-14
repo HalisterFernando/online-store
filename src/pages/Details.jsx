@@ -11,15 +11,11 @@ class Details extends React.Component {
   }
 
   componentDidMount() {
-    this.handleClick();
+    this.productDetail();
   }
 
-  handleClick = async () => {
-    const {
-      match: {
-        params: { id },
-      },
-    } = this.props;
+  productDetail = async () => {
+    const { match: { params: { id } } } = this.props;
     this.setState({}, async () => {
       const response = await fetch(` https://api.mercadolibre.com/items/${id}`);
       const searchId = await response.json();

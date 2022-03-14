@@ -3,8 +3,8 @@ import Loading from '../components/Loading';
 import Menu from '../components/Menu';
 import ProductCard from '../components/ProductCard';
 import ShoppingCartButton from '../components/ShoppingCartButton';
-import { getCategories } from '../services/api';
 import '../css/Home.css';
+import { getCategories } from '../services/api';
 
 class Home extends React.Component {
   constructor() {
@@ -14,11 +14,25 @@ class Home extends React.Component {
       load: false,
       categories: [],
       cards: [],
+      items: [],
     };
   }
 
   componentDidMount() {
     this.returnGetCategories();
+  }
+
+  addItem = async (e) => {
+    const { value } = e.target;
+    const response = await fetch(` https://api.mercadolibre.com/items/${value}`);
+    const searchId = await response.json();
+
+    this.setState((prevState) => ({
+      items: [...prevState.items, searchId],
+    }), () => {
+      const { items } = this.state;
+      localStorage.setItem('product', JSON.stringify(items));
+    });
   }
 
   handleChange = ({ target }) => {
@@ -60,6 +74,7 @@ class Home extends React.Component {
 
   render() {
     const { search, categories, load, cards } = this.state;
+
     return (
       <div className="box-shopping">
         <div className="box-menu">
@@ -107,6 +122,7 @@ class Home extends React.Component {
                   productImage={ card.thumbnail }
                   productPrice={ card.price }
                   productId={ card.id }
+                  addItem={ (e) => this.addItem(e) }
                 />
               )))}
             </div>
