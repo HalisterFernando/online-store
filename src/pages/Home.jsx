@@ -1,10 +1,11 @@
+import { PropTypes } from 'prop-types';
 import React from 'react';
 import Loading from '../components/Loading';
 import Menu from '../components/Menu';
 import ProductCard from '../components/ProductCard';
 import ShoppingCartButton from '../components/ShoppingCartButton';
-import { getCategories } from '../services/api';
 import '../css/Home.css';
+import { getCategories } from '../services/api';
 
 class Home extends React.Component {
   constructor() {
@@ -60,6 +61,8 @@ class Home extends React.Component {
 
   render() {
     const { search, categories, load, cards } = this.state;
+    const { addItem } = this.props;
+
     return (
       <div className="box-shopping">
         <div className="box-menu">
@@ -107,6 +110,7 @@ class Home extends React.Component {
                   productImage={ card.thumbnail }
                   productPrice={ card.price }
                   productId={ card.id }
+                  addItem={ addItem }
                 />
               )))}
             </div>
@@ -116,5 +120,9 @@ class Home extends React.Component {
     );
   }
 }
+
+Home.propTypes = {
+  addItem: PropTypes.func.isRequired,
+};
 
 export default Home;
