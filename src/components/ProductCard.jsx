@@ -1,12 +1,13 @@
 import { PropTypes } from 'prop-types';
 import React from 'react';
+import '../css/Home.css';
 import { Link } from 'react-router-dom';
 
 class ProductCard extends React.Component {
   render() {
     const { productName, productImage, productPrice, productId } = this.props;
     return (
-      <div>
+      <div className="box-card">
         <Link
           to={ `/details/${productId}` }
           data-testid="product-detail-link"

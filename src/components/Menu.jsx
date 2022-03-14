@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import '../css/Home.css';
 
 class Menu extends Component {
-  buttonMenu = (categorie) => {
-    const { id, name } = categorie;
+  buttonMenu = (category) => {
+    const { id, name } = category;
     const { callback } = this.props;
     return (
       <li key={ id }>
         <button
+          className="bt-category"
           type="submit"
           data-testid="category"
           value={ id }
@@ -23,7 +25,7 @@ class Menu extends Component {
     const { categories } = this.props;
     return (
       categories
-        .map((categorie) => this.buttonMenu(categorie))
+        .map((category) => this.buttonMenu(category))
     );
   }
 }

@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../css/Home.css';
 
 class ShoppingCartButton extends React.Component {
   render() {
     return (
-      <div>
+      <div className="shop-cart">
         <Link to="/cart" data-testid="shopping-cart-button">
           <img
             className="cart-image"
