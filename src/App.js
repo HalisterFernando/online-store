@@ -39,6 +39,50 @@ class App extends React.Component {
     });
   }
 
+  decItem = async ({ target }) => {
+    const { value } = target;
+    const { items } = this.state;
+    // const response = await fetch(` https://api.mercadolibre.com/items/${value}`);
+    // const searchId = await response.json();
+
+    // Imple
+    const indexItems = items.findIndex((item) => item.id === value);
+    console.log(indexItems);
+    // const numberVerify = -1;
+    if (items[indexItems].quantity >= 1) {
+      items[indexItems].quantity -= 1;
+      console.log(items);
+    }
+    // else {
+    //   // this.removeItem({ target });
+    //   console.log(items);
+    // }
+
+    this.setState(() => ({
+      items,
+    }), () => {
+      localStorage.setItem('product', JSON.stringify(items));
+    });
+  }
+
+  removeItem = async ({ target }) => {
+    const { value } = target;
+    const { items } = this.state;
+    // const response = await fetch(` https://api.mercadolibre.com/items/${value}`);
+    // const searchId = await response.json();
+
+    // Imple
+    const indexItems = items.findIndex((item) => item.id === value);
+    console.log(indexItems);
+    // const numberVerify = -1;
+    items.splice(indexItems, 1);
+    this.setState(() => ({
+      items,
+    }), () => {
+      localStorage.setItem('product', JSON.stringify(items));
+    });
+  }
+
   render() {
     const { items } = this.state;
     return (
@@ -50,7 +94,18 @@ class App extends React.Component {
               path="/details/:id"
               render={ (props) => <Details { ...props } addItem={ this.addItem } /> }
             />
-            <Route exact path="/cart" render={ () => <ShoppingCart items={ items } /> } />
+            <Route
+              exact
+              path="/cart"
+              render={ () => (
+                <ShoppingCart
+                  removeItem={ this.removeItem }
+                  decItem={ this.decItem }
+                  addItem={ this.addItem }
+                  items={ items }
+                />
+              ) }
+            />
             <Route exact path="/" render={ () => <Home addItem={ this.addItem } /> } />
           </Switch>
         </BrowserRouter>
