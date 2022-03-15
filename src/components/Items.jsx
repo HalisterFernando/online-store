@@ -3,7 +3,7 @@ import React from 'react';
 
 class Items extends React.Component {
   render() {
-    const { productName, productImage, productPrice } = this.props;
+    const { productName, productImage, productPrice, quantity } = this.props;
 
     return (
       <div>
@@ -12,7 +12,7 @@ class Items extends React.Component {
           <img src={ productImage } alt={ productName } />
         </div>
         <p>{`R$ ${productPrice.toFixed(2)}`}</p>
-        <span data-testid="shopping-cart-product-quantity">1</span>
+        <span data-testid="shopping-cart-product-quantity">{quantity}</span>
       </div>
     );
   }
@@ -22,6 +22,7 @@ Items.propTypes = {
   productName: PropTypes.string.isRequired,
   productImage: PropTypes.string.isRequired,
   productPrice: PropTypes.number.isRequired,
+  quantity: PropTypes.number.isRequired,
 };
 
 export default Items;

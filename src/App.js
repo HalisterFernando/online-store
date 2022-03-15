@@ -13,15 +13,28 @@ class App extends React.Component {
     };
   }
 
-  addItem = async (e) => {
-    const { value } = e.target;
+  addItem = async ({ target }) => {
+    const { value } = target;
+    const { items } = this.state;
     const response = await fetch(` https://api.mercadolibre.com/items/${value}`);
     const searchId = await response.json();
 
-    this.setState((prevState) => ({
-      items: [...prevState.items, searchId],
+    // Imple
+    const indexItems = items.findIndex((item) => item.id === value);
+    console.log(indexItems);
+    const numberVerify = -1;
+    if (indexItems === numberVerify) {
+      searchId.quantity = 1;
+      items.push(searchId);
+      console.log(items);
+    } else {
+      items[indexItems].quantity += 1;
+      console.log(items);
+    }
+
+    this.setState(() => ({
+      items,
     }), () => {
-      const { items } = this.state;
       localStorage.setItem('product', JSON.stringify(items));
     });
   }
