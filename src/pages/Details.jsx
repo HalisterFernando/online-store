@@ -17,7 +17,7 @@ class Details extends React.Component {
   productDetail = async () => {
     const { match: { params: { id } } } = this.props;
     this.setState({}, async () => {
-      const response = await fetch(` https://api.mercadolibre.com/items/${id}`);
+      const response = await fetch(`https://api.mercadolibre.com/items/${id}`);
       const searchId = await response.json();
       this.setState({ details: searchId });
       console.log(id);
@@ -26,12 +26,21 @@ class Details extends React.Component {
 
   render() {
     const { details } = this.state;
+    const { addItem } = this.props;
     return (
       <>
         <ShoppingCartButton />
         <h4 data-testid="product-detail-name">{details.title}</h4>
         <img src={ details.thumbnail } alt={ details.title } />
         <p>{ details.price }</p>
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          value={ details.id }
+          onClick={ addItem }
+        >
+          Adicionar ao carrinho
+        </button>
       </>
     );
   }
@@ -43,6 +52,7 @@ Details.propTypes = {
       id: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
+  addItem: PropTypes.func.isRequired,
 };
 
 export default Details;

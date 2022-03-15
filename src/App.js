@@ -32,7 +32,11 @@ class App extends React.Component {
       <div>
         <BrowserRouter>
           <Switch>
-            <Route exact path="/details/:id" component={ Details } />
+            <Route
+              exact
+              path="/details/:id"
+              render={ (props) => <Details { ...props } addItem={ this.addItem } /> }
+            />
             <Route exact path="/cart" render={ () => <ShoppingCart items={ items } /> } />
             <Route exact path="/" render={ () => <Home addItem={ this.addItem } /> } />
           </Switch>
