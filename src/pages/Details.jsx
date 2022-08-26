@@ -27,6 +27,7 @@ class Details extends React.Component {
   render() {
     const { details } = this.state;
     const { addItem } = this.props;
+
     return (
       <>
         <ShoppingCartButton />

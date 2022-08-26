@@ -4,7 +4,8 @@ import Items from '../components/Items';
 
 class ShoppingCart extends React.Component {
   render() {
-    const { items, addItem, decItem, removeItem } = this.props;
+    const { items, incItem, decItem, removeItem } = this.props;
+
     return (
       <div>
         {items.length === 0 ? (
@@ -21,7 +22,7 @@ class ShoppingCart extends React.Component {
                   productImage={ item.thumbnail }
                   productPrice={ item.price }
                   quantity={ item.quantity }
-                  addItem={ addItem }
+                  incItem={ incItem }
                   decItem={ decItem }
                   removeItem={ removeItem }
                 />
@@ -37,7 +38,7 @@ class ShoppingCart extends React.Component {
 
 ShoppingCart.propTypes = {
   items: PropTypes.arrayOf(PropTypes.any).isRequired,
-  addItem: PropTypes.func.isRequired,
+  incItem: PropTypes.func.isRequired,
   decItem: PropTypes.func.isRequired,
   removeItem: PropTypes.func.isRequired,
 };

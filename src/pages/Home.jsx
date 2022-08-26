@@ -111,6 +111,7 @@ class Home extends React.Component {
                   productPrice={ card.price }
                   productId={ card.id }
                   addItem={ addItem }
+                  productObj={ card } // Objeto correspondente ao ítem renderizado no home usado na função addItem
                 />
               )))}
             </div>

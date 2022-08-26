@@ -5,7 +5,8 @@ import '../css/Home.css';
 
 class ProductCard extends React.Component {
   render() {
-    const { productName, productImage, productPrice, productId, addItem } = this.props;
+    const { productName, productImage, productPrice,
+      productId, addItem, productObj } = this.props;
     return (
       <div className="box-card">
         <Link
@@ -21,8 +22,8 @@ class ProductCard extends React.Component {
         <button
           type="button"
           data-testid="product-add-to-cart"
-          value={ productId }
-          onClick={ addItem }
+          onClick={ () => addItem(productObj) } // Objeto passado via props usado como parâmetro da função addItem
+
         >
           Adicionar ao carrinho
 
@@ -38,6 +39,7 @@ ProductCard.propTypes = {
   productPrice: PropTypes.number.isRequired,
   productId: PropTypes.string.isRequired,
   addItem: PropTypes.func.isRequired,
+  productObj: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default ProductCard;

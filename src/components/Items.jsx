@@ -9,9 +9,9 @@ class Items extends React.Component {
       productPrice,
       quantity,
       itemId,
-      addItem,
       removeItem,
-      decItem } = this.props;
+      decItem,
+      incItem } = this.props;
 
     return (
       <div>
@@ -33,7 +33,7 @@ class Items extends React.Component {
           value={ itemId }
           type="button"
           data-testid="product-increase-quantity"
-          onClick={ addItem }
+          onClick={ incItem }
         >
           +
         </button>
@@ -49,8 +49,8 @@ Items.propTypes = {
   productPrice: PropTypes.number.isRequired,
   quantity: PropTypes.number.isRequired,
   itemId: PropTypes.string.isRequired,
-  addItem: PropTypes.func.isRequired,
   decItem: PropTypes.func.isRequired,
+  incItem: PropTypes.func.isRequired,
   removeItem: PropTypes.func.isRequired,
 };
 
