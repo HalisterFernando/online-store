@@ -4,7 +4,7 @@ import Loading from '../components/Loading';
 import Menu from '../components/Menu';
 import ProductCard from '../components/ProductCard';
 import ShoppingCartButton from '../components/ShoppingCartButton';
-import '../css/Home.css';
+
 import { getCategories } from '../services/api';
 
 class Home extends React.Component {

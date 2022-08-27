@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import '../css/Home.css';
 
 class Menu extends Component {
   buttonMenu = (category) => {
