@@ -1,11 +1,13 @@
 import { PropTypes } from 'prop-types';
 import React from 'react';
+import Button from '@mui/material/Button';
+import { Box, TextField } from '@mui/material';
 import Loading from '../components/Loading';
 import Menu from '../components/Menu';
 import ProductCard from '../components/ProductCard';
-import ShoppingCartButton from '../components/ShoppingCartButton';
-
 import { getCategories } from '../services/api';
+
+import Header from '../components/Header';
 
 class Home extends React.Component {
   constructor() {
@@ -64,45 +66,39 @@ class Home extends React.Component {
     const { addItem } = this.props;
 
     return (
-      <div className="box-shopping">
-        <div className="box-menu">
-          { load ? <Loading />
-            : (
-              <ul>
+      <>
+        <Header />
+        <Box sx={ { display: 'flex' } }>
+          {
+            load
+              ? <Loading />
+              : (
                 <Menu
                   categories={ categories }
                   callback={ this.searchCategorie }
                 />
-              </ul>
-            )}
-        </div>
-        <div className="box-shop-search">
-          <div className="box-search">
-            <div className="box-message">
-              <p
-                data-testid="home-initial-message"
-              >
-                Digite algum termo de pesquisa ou escolha uma categoria.
-              </p>
-            </div>
-            <div className="box-input-search">
-              <input
-                data-testid="query-input"
-                type="text"
+              )
+          }
+
+          <Box sx={ { width: 1 } }>
+            <Box sx={ { display: 'flex', justifyContent: 'center', mt: '30px', gap: '10px' } }>
+              <TextField
+                size="small"
                 name="search"
+                label="Pesquise por produto ou categoria"
                 value={ search }
                 onChange={ this.handleChange }
               />
-              <button
+              <Button
                 type="button"
+                variant="contained"
                 data-testid="query-button"
                 onClick={ this.handleClick }
               >
                 Pesquisar
-              </button>
-              <ShoppingCartButton />
-            </div>
-            <div className="box-cards">
+              </Button>
+            </Box>
+            <Box sx={ { height: '800px', overflowY: 'scroll' } }>
               {cards.length > 0 && (cards.map((card) => (
                 <ProductCard
                   key={ card.id }
@@ -114,10 +110,11 @@ class Home extends React.Component {
                   productObj={ card } // Objeto correspondente ao ítem renderizado no home usado na função addItem
                 />
               )))}
-            </div>
-          </div>
-        </div>
-      </div>
+            </Box>
+          </Box>
+
+        </Box>
+      </>
     );
   }
 }

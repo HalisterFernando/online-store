@@ -1,30 +1,38 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 
 class Menu extends Component {
   buttonMenu = (category) => {
-    const { id, name } = category;
     const { callback } = this.props;
-    return (
+    return category.map(({ name, id }) => (
       <li key={ id }>
-        <button
-          className="bt-category"
+        <Button
+          sx={ { my: 1, width: '300px' } }
+          variant="contained"
           type="submit"
           data-testid="category"
           value={ id }
           onClick={ callback }
         >
           {name}
-        </button>
+        </Button>
       </li>
-    );
+    ));
   }
 
   render() {
     const { categories } = this.props;
     return (
-      categories
-        .map((category) => this.buttonMenu(category))
+      <Box
+        component="nav"
+        sx={ { overflowY: 'scroll', height: '100vh', width: '500px', px: 5, py: 2 } }
+      >
+        <ul>
+          {this.buttonMenu(categories)}
+        </ul>
+      </Box>
     );
   }
 }
